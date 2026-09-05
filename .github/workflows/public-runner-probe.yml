@@ -1,0 +1,20 @@
+name: Public Runner Probe
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Verify public runner availability
+        run: |
+          set -euo pipefail
+          echo "PUBLIC_RUNNER_PROBE=PASS"
+          uname -a
